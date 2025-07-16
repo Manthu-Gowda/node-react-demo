@@ -1,0 +1,205 @@
+.add {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  &_sec {
+    width: 95%;
+    &_header {
+      text-align: center;
+      margin-bottom: 10px;
+      h2 {
+        font-weight: 24px;
+        font-weight: 600;
+        color: #838383;
+      }
+    }
+    &_form {
+      &_top {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 20px;
+        &_left {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          &_inputs {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            .ant-upload-select {
+              width: 100% !important;
+            }
+            .ant-form-item-vertical {
+              margin-bottom: 8px !important;
+            }
+            .ant-form-item-label {
+              padding: 0 !important;
+            }
+            label {
+              font-size: 14px !important;
+              font-weight: 500;
+              padding-bottom: 6px;
+              color: #5c5d5d;
+            }
+          }
+        }
+        &_right {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          &_inputs {
+            width: 100%;
+            .ant-upload-select {
+              width: 100% !important;
+              height: 100px !important;
+            }
+            .ant-form-item-vertical {
+              margin-bottom: 8px !important;
+            }
+            .ant-form-item-label {
+              padding: 0 !important;
+            }
+            label {
+              font-size: 14px !important;
+            }
+          }
+        }
+      }
+      &_bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        &_inputs {
+          width: 100%;
+        }
+        .ql-container.ql-snow {
+          height: 330px !important;
+        }
+        .ql-tooltip.ql-editing {
+          left: 0px !important;
+          align-items: center;
+        }
+      }
+    }
+    &_buttons {
+      width: 100%;
+      margin: 20px 0;
+      &_cont {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+}
+// .jodit-status-bar {
+//   display: none !important;
+// }
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+  .add {
+    &_sec {
+      width: 100%;
+      &_form {
+        &_top {
+          grid-template-columns: repeat(1, 1fr);
+          &_right {
+            &_inputs {
+              .ant-upload-select {
+                width: 100% !important;
+                height: 100px !important;
+              }
+            }
+          }
+        }
+        &_bottom {
+          width: 100%;
+          justify-content: center;
+          margin-top: 10px;
+          &_buttons {
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+      &_buttons {
+        &_cont {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+  .confirm {
+    &_popup {
+      width: 300px;
+      &_inner {
+        &_buttons {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 768px) {
+  .add {
+    &_sec {
+      width: 100%;
+      &_form {
+        &_top {
+          grid-template-columns: repeat(1, 1fr);
+          &_right {
+            &_inputs {
+              .ant-upload-select {
+                width: 100% !important;
+                height: 100px !important;
+              }
+            }
+          }
+        }
+        &_bottom {
+          width: 100%;
+          justify-content: center;
+          margin-top: 10px;
+          &_buttons {
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+      &_buttons {
+        &_cont {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+  .confirm {
+    &_popup {
+      width: 450px;
+      &_inner {
+        &_buttons {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .confirm {
+    &_popup {
+      width: 700px;
+      &_inner {
+        &_buttons {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

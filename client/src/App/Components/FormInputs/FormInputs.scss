@@ -1,0 +1,109 @@
+.forminput {
+  position: relative;
+  width: 100%;
+  span {
+    color: #5c5d5d;
+    font-size: 14px;
+    padding-bottom: 10px;
+    font-weight: 500;
+  }
+  .input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 12px;
+    margin-top: 5px;
+    position: relative;
+    &.with-icon {
+      padding-left: 45px;
+    }
+    .input {
+      border: none;
+      width: 100%;
+      background-color: transparent;
+      color: #5c5d5d;
+      font-size: 14px;
+      font-weight: 500;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        font-size: 14px;
+        color: #838383;
+        font-weight: 400;
+      }
+    }
+    .icon-container {
+      position: absolute;
+      left: 15px;
+      display: flex;
+      align-items: center;
+      .input-icon {
+        color: #707070;
+      }
+    }
+    .password-toggle-icon {
+      position: absolute;
+      right: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      .input-icon {
+        color: #707070;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .forminput {
+    span {
+      font-size: 14px;
+    }
+    .input-container {
+      padding: 12px;
+      .input {
+        font-size: 14px;
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .forminput {
+    span {
+      font-size: 14px;
+    }
+    .input-container {
+      padding: 12px;
+      .input {
+        font-size: 14px;
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .forminput {
+    span {
+      font-size: 14px;
+    }
+    .input-container {
+      padding: 12px;
+      .input {
+        font-size: 14px;
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

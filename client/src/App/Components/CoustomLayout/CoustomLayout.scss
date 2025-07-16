@@ -1,0 +1,94 @@
+.content {
+  margin: 24px 16px 0;
+  &_center {
+    padding: 12px;
+    height: calc(100vh - 88px);
+    background-color: #fff;
+    border-radius: 5px;
+    overflow-y: auto;
+  }
+}
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 999999;
+}
+.sidebar {
+  background-color: #fff !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  &_logo {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    img {
+      width: 150px;
+    }
+  }
+  ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.css-dev-only-do-not-override-3rel02 {
+    border: none !important;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  &_sec {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 40px;
+    &_logout {
+      display: flex;
+      align-items: center;
+      position: relative;
+      img {
+        width: 35px;
+        height: auto;
+        cursor: pointer;
+      }
+      .custom-dropdown {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+        line-height: 2;
+        width: 280px;
+        h3 {
+          font-size: 16px;
+          color: #5c5d5d;
+        }
+        &_buttons {
+          display: flex;
+          justify-content: space-between;
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+span.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left {
+  top: 16px !important;
+  border-radius: 6px !important;
+  width: 30px;
+  height: 30px;
+}

@@ -1,0 +1,235 @@
+from pathlib import Path
+
+# Full cleaned content from user input for embedding
+content = """
+Home Page Content
+
+Banner Section
+Headline:
+Revolutionizing Quality Management for Pharma and CRO
+
+Description:
+Introducing OneQMS, your all-in-one, cloud-based quality management software solution designed specifically to streamline and elevate your QMS processes in the pharmaceutical industry.
+
+About Us Section
+Header: About Us
+
+Content:
+Welcome to Astakenis, a pioneering provider of cutting-edge, cloud-based Quality Management System (QMS) software solutions specifically designed for the demanding requirements of the Pharmaceutical, Pharmacovigilance, and Clinical Research Organization (CRO) sectors.
+We understand the critical importance of ensuring stringent quality assurance standards and regulatory compliance within these industries.
+
+Our Products
+
+OneQMS Quality
+A cutting-edge QMS designed to streamline pharmaceutical, pharmacovigilance, clinical, and clinical trial quality operations.
+The cloud-based system simplifies, automates, and enhances service delivery.
+
+OneQMS Document
+Empowers organizations to manage, access, and secure critical documents effectively, ensuring full compliance with industry standards.
+
+OneQMS Training
+A state-of-the-art training management solution helping organizations stay compliant while improving workforce readiness and regulatory knowledge.
+
+Why Astakenis OneQMS
+
+Efficiency
+OneQMS streamlines QMS processes, ensuring compliance with pharmaceutical regulations while enhancing accuracy and productivity.
+
+Centralized Platform
+A cloud-based system managing all quality processes including documents, training, CAPA, audits, deviations, customer complaints, and more.
+
+Innovation
+Built with cutting-edge technology and deep domain expertise in Life Sciences, tailored to the industry's regulatory challenges.
+
+Tailored Solutions
+Custom-built solutions for Pharma, Biotech, CROs, and Pharmacovigilance, delivering efficiency and regulatory excellence.
+
+Future-Proofing
+Designed for scalability and sustainability, keeping pace with the evolving regulatory landscape in Life Sciences R&D.
+
+Mobile Product Highlights
+
+OneQMS Quality: Integrated cloud suite for automated and compliant quality management.
+OneQMS Document: Secured and structured document control.
+OneQMS Training: Streamlined training and compliance tracking for pharma professionals.
+
+Clients Section
+Clients showcased (logos): Clinevo, Pharmayas, A&Z, etc.
+
+---
+
+About Us Page Content
+
+Welcome to Astakenis, the QMS division of Clinevo Technologies — a pioneering provider of cloud-based Quality Management System (QMS) software designed to meet the demanding standards of:
+- Pharmaceutical / Pharma companies
+- Pharmacovigilance teams
+- Clinical Research Organizations (CROs)
+
+Astakenis understands the critical need for quality assurance and regulatory compliance across life sciences.
+
+Mission Statement
+To empower life sciences organizations with innovative cloud-based tools that enhance operational efficiency and streamline compliance.
+
+What Sets Us Apart
+- Deep commitment to intuitive, scalable, and integrated QMS solutions
+- Tools covering the full quality lifecycle: Document control, CAPA, deviations, change control, audits, risk management, trainings
+- Built using latest cloud technologies for pharma scalability and security
+
+Team Capabilities
+Includes industry experts, regulatory specialists, and software engineers working closely with clients for tailored, compliant solutions.
+
+OneQMS Solutions – Feature Highlights
+- Comprehensive Compliance
+- Scalable & Flexible
+- Real-Time Insights
+- User-Centric Interface
+- Continuous Innovation
+
+Commitment Statement
+“At Astakenis, we are not just a software provider — we are your strategic partner in achieving quality excellence and regulatory compliance.”
+
+---
+
+OneQMS Quality Management Page
+
+Comprehensive cloud-based QMS built for the demands of Pharma and CROs.
+
+OneQMS Quality Management System
+
+In industries where precision, compliance, and safety are critical, OneQMS Quality offers a cloud-based solution crafted for:
+- Pharmaceutical companies
+- CROs
+
+Key Features:
+- CAPA Management
+- Change Control
+- Audit Management
+- Customer Complaint Handling
+- Quality Issues & Deviation Management
+- Incident Management
+
+Why Choose OneQMS Quality:
+- Security & Compliance
+- Collaboration & Integration
+- User-Friendly Interface
+- Scalability & Flexibility
+
+---
+
+OneQMS Document Management Page
+
+Introduction:
+Astakenis OneQMS Document is a secure, compliant, and cloud-based platform that simplifies document access, supports regulatory alignment, and reduces manual errors.
+
+Key Features:
+- Secure Cloud Storage
+- Compliance Management
+- Version Control & Audit Trail
+- Customizable Workflows
+- Search & Retrieval
+
+Why Choose OneQMS Document:
+- Industry Expertise
+- Reliability & Scalability
+- Data Security & Compliance
+- Customer Support
+
+---
+
+OneQMS Training Management Page
+
+OneQMS Training is an intuitive, cloud-based Training Management System (TMS) designed for:
+- Pharmaceutical companies
+- CROs
+- Pharmacovigilance teams
+
+Key Features:
+- Comprehensive Compliance
+- Customized Learning Groups
+- Centralized Repository
+- User-Friendly Interface
+- Real-Time Progress Tracking
+- Scalability & Accessibility
+- Integration Capabilities
+
+Why Choose OneQMS Training:
+- Industry Expertise
+- Data Security
+- Dedicated Support
+
+---
+
+OneQMS Overview Page
+
+Astakenis introduces OneQMS, an all-in-one cloud-based Quality Management System designed to:
+- Ensure compliance
+- Improve efficiency
+- Standardize quality processes across Pharma, Clinical, and Pharmacovigilance teams
+
+Key Modules:
+- OneQMS Quality
+- OneQMS Document
+- OneQMS Training
+
+Key Benefits:
+- Seamless Compliance
+- Centralized Documentation
+- Effortless Audits
+- Enhanced Collaboration
+- Real-Time Monitoring
+
+Cloud Advantages:
+- Accessibility
+- Security
+- Scalability
+
+---
+
+Contact Us Page
+
+Global Office Locations:
+India: Bengaluru
+Europe: Netherlands
+USA: New York
+UK: London
+
+Contact: info@astakenis.com | +91 6360674997
+
+---
+
+Privacy Policy Summary:
+
+Astakenis is committed to protecting personal data with strict confidentiality and legal compliance.
+
+We collect only necessary data:
+- Contact info
+- Interaction history
+- Support communication
+
+We use data strictly to:
+- Deliver services
+- Respond to inquiries
+- Fulfill legal obligations
+
+We never share data without explicit consent, unless required by law.
+
+Security:
+- Data encryption
+- Secure storage
+- Lawful retention
+
+User Rights:
+- Access, correct, delete, or restrict data
+- Withdraw consent
+- Be informed about breaches
+
+Children’s Privacy:
+- Parental consent required under 18 in India and under 13 in the US
+
+Cookie Use:
+- For settings, performance, and usability
+
+Contact:
+Astakenis Consulting Pvt Ltd, Bengaluru
+info@astakenis.com | www.astakenis.com
+"""
