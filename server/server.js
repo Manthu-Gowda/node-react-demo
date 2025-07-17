@@ -188,7 +188,13 @@ app.delete("/deleteUser", async (req, res) => {
 //   }
 // });
 
-app.listen(4000, async () => {
-  await db();
-  console.log("Server is running on port 4000");
-});
+db()
+  .then(() => {
+    app.listen(4000, () => {
+      console.log("✅ Connected to MongoDB");
+      console.log("🚀 Server is running on port 4000");
+    });
+  })
+  .catch((err) => {
+    console.error("❌ Failed to connect to MongoDB:", err.message);
+  });

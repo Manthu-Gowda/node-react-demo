@@ -1,8 +1,8 @@
 const User = require("../Modals/authSchema");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = 'secret'; 
+const JWT_SECRET = "secret";
 
 async function createUser(req, res) {
   const { userName, email, password } = req.body;
@@ -80,14 +80,13 @@ async function userLogin(req, res) {
       };
     }
 
-        // Generate a JWT token
-        const token = jwt.sign(
-          { id: user._id, userName: user.userName, email: user.email }, // Payload
-          JWT_SECRET, // Secret key
-          { expiresIn: '1h' } // Options: Token expires in 1 hour
-        );
+    // Generate a JWT token
+    const token = jwt.sign(
+      { id: user._id, userName: user.userName, email: user.email }, // Payload
+      JWT_SECRET, // Secret key
+      { expiresIn: "1h" } // Options: Token expires in 1 hour
+    );
 
-        
     // If login is successful
     return {
       status: 200,
@@ -99,7 +98,7 @@ async function userLogin(req, res) {
   } catch (error) {
     return {
       status: 500,
-      message: "Error during login: " + error.message,
+      message: "Error during login: " + error,
       data: null,
     };
   }
