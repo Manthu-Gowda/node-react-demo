@@ -3,21 +3,18 @@ const express = require("express");
 const db = require("./Database/mongoDb");
 const employeeRouter = require("./Routes/employeeData");
 const authRouter = require("./Routes/authData");
-const chatbotRouter = require("./Routes/chatBot");
-const { QdrantClient } = require("@qdrant/js-client-rest");
-const {
-  QdrantVectorStore,
-} = require("@langchain/community/vectorstores/qdrant");
-const { OpenAIEmbeddings } = require("@langchain/openai");
+const chatbotRouter = require("./Routes/chatbot");
+const path = require("path");
 const app = express();
 const dotenv = require("dotenv");
 
 dotenv.config();
 app.use(express.json());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
+app.use(express.static(path.join(__dirname, 'public')));
+// Handle all routes (important for React Router)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.use("/account", authRouter);
 app.use("/employee", employeeRouter);
@@ -156,40 +153,40 @@ app.delete("/deleteUser", async (req, res) => {
 });
 
 //ChatBot API
-app.post("/chatbot", async (req, res) => {
-  try {
-    const { question } = req.body;
-    if (!question) return res.status(400).send("Question is required.");
+// app.post("/chatbot", async (req, res) => {
+//   try {
+//     const { question } = req.body;
+//     if (!question) return res.status(400).send("Question is required.");
 
-    const client = new QdrantClient({
-      url: "https://9cf4ca90-e603-4101-bc1c-35ddbe1ca7a1.us-east-1-0.aws.cloud.qdrant.io:6333",
-      apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.TVAnWG2tkvPqxirbzuGedoPorrTCRBDGQG7HAJp1gws",
-      checkCompatibility: false,
-      config: { timeout: 5000 },
-    });
+//     const client = new QdrantClient({
+//       url: "https://9cf4ca90-e603-4101-bc1c-35ddbe1ca7a1.us-east-1-0.aws.cloud.qdrant.io:6333",
+//       apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.TVAnWG2tkvPqxirbzuGedoPorrTCRBDGQG7HAJp1gws",
+//       checkCompatibility: false,
+//       config: { timeout: 5000 },
+//     });
 
-    const embeddings = new OpenAIEmbeddings({
-      openAIApiKey: "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",
-    });
+//     const embeddings = new OpenAIEmbeddings({
+//       openAIApiKey: "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",
+//     });
 
-    const vectorStore = await QdrantVectorStore.fromExistingCollection(
-      embeddings,
-      {
-        client,
-        collectionName: "astakenis-site-content",
-      }
-    );
+//     const vectorStore = await QdrantVectorStore.fromExistingCollection(
+//       embeddings,
+//       {
+//         client,
+//         collectionName: "astakenis-site-content",
+//       }
+//     );
 
-    const results = await vectorStore.similaritySearch(question, 1);
-    const topAnswer =
-      results[0]?.pageContent || "Sorry, I couldn't find an answer for that.";
+//     const results = await vectorStore.similaritySearch(question, 1);
+//     const topAnswer =
+//       results[0]?.pageContent || "Sorry, I couldn't find an answer for that.";
 
-    res.json({ answer: topAnswer });
-  } catch (err) {
-    console.error("Chatbot Error:", err?.response || err);
-    res.status(500).send("Server error.");
-  }
-});
+//     res.json({ answer: topAnswer });
+//   } catch (err) {
+//     console.error("Chatbot Error:", err?.response || err);
+//     res.status(500).send("Server error.");
+//   }
+// });
 
 app.listen(4000, async () => {
   await db();

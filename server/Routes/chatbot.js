@@ -1,14 +1,19 @@
 const express = require("express");
 const router = express.Router();
 require("dotenv").config();
-
+const axios = require("axios");
 const { QdrantClient } = require("@qdrant/js-client-rest");
-const {
-  QdrantVectorStore,
-} = require("@langchain/community/vectorstores/qdrant");
-const { OpenAIEmbeddings, ChatOpenAI } = require("@langchain/openai");
-const { RetrievalQAChain } = require("langchain/chains");
 
+// 🔹 Function to generate embedding via Ollama
+async function getEmbedding(prompt) {
+  const response = await axios.post("http://localhost:11434/api/embeddings", {
+    model: "nomic-embed-text",
+    prompt,
+  });
+  return response.data.embedding;
+}
+
+// 🔹 Ask Route
 router.post("/ask", async (req, res) => {
   try {
     const question = req.body.question;
@@ -16,48 +21,38 @@ router.post("/ask", async (req, res) => {
       return res.status(400).json({ error: "Question is required" });
     }
 
-    // Connect to Qdrant
+    // Get vector from embedding
+    const queryVector = await getEmbedding(question);
+
+    // Qdrant client
     const client = new QdrantClient({
-      url: "https://9cf4ca90-e603-4101-bc1c-35ddbe1ca7a1.us-east-1-0.aws.cloud.qdrant.io:6333",
-      apiKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.TVAnWG2tkvPqxirbzuGedoPorrTCRBDGQG7HAJp1gws",
-      checkCompatibility: false,
-      config: { timeout: 5000 },
+      url: process.env.QDRANT_URL,
+      apiKey: process.env.QDRANT_API_KEY,
     });
 
-    // Load vector store with real embeddings
-    const embeddings = new OpenAIEmbeddings({
-      openAIApiKey: "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",
+    const results = await client.search("astakenis-site-content", {
+      vector: queryVector,
+      top: 3,
+      with_payload: true,
     });
 
-    const vectorStore = await QdrantVectorStore.fromExistingCollection(
-      embeddings,
-      {
-        client,
-        collectionName: "astakenis-site-content",
-      }
-    );
-    const docs = await vectorStore.similaritySearch(question, 3);
-    console.log(
-      "🔍 Retrieved documents:",
-      docs.map((d) => d.pageContent)
-    );
-    // Load ChatOpenAI
-    const model = new ChatOpenAI({
-      openAIApiKey: "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",
-      modelName: "gpt-3.5-turbo",
-      temperature: 0.3,
+    const rawChunks = results.map((item) => item.payload.text || "").filter(Boolean);
+
+    const contexts = rawChunks.join("\n\n").slice(0, 2000); // 🔥 limit to 2000 characters
+
+    const prompt = `Answer the question based on this context:\n\n${contexts}\n\nQ: ${question}\nA:`;
+
+    const chatResponse = await axios.post("http://localhost:11434/api/generate", {
+      model: "llama3",
+      prompt,
+      stream: false,
     });
 
-    const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever(), {
-      returnSourceDocuments: true,
-    });
-    const response = await chain.call({ query: question });
-
-    res.json({ answer: response.text || "No answer found." });
+    const finalAnswer = chatResponse.data.response;
+    res.json({ answer: finalAnswer });
   } catch (err) {
-    console.error("❌ Error in /ask:", err?.message || err);
-    res.status(500).json({ error: "Something went wrong on the server." });
+    console.error("❌ Error in /ask:", err?.response?.data || err.message || err);
+    res.status(500).json({ error: "Failed to generate response from LLM" });
   }
 });
 

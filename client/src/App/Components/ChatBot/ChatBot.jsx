@@ -38,7 +38,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("/chatbot/ask", {
+      const res = await axios.post("chatbot/ask", {
         question: sampleQuestion,
       });
       const botMessage = { sender: "bot", text: res.answer };

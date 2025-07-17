@@ -1,7 +1,5 @@
-from pathlib import Path
 
-# Full cleaned content from user input for embedding
-content = """
+content = "
 Home Page Content
 
 Banner Section
@@ -232,4 +230,4 @@ Cookie Use:
 Contact:
 Astakenis Consulting Pvt Ltd, Bengaluru
 info@astakenis.com | www.astakenis.com
-"""
+"
