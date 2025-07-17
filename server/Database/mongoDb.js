@@ -3,11 +3,7 @@ const mongoose = require("mongoose");
 
 async function db() {
   try {
-    await mongoose.connect('mongodb+srv://kmanthugowda:Manthu%40420@nodereactdemo.veoscsu.mongodb.net/?retryWrites=true&w=majority', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 10000, 
-    });
+    await mongoose.connect('mongodb+srv://kmanthugowda:Manthu%40420@nodereactdemo.veoscsu.mongodb.net/?retryWrites=true&w=majority');
 
     mongoose.connection.on("connected", () => {
       console.log("🟢 Mongoose connected");
