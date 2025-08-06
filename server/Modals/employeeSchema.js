@@ -38,6 +38,11 @@ const employeeSchema = new mongoose.Schema({
     },
     updated_at: {
         type: Date
+    },
+     createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+        required: true
     }
 });
 
